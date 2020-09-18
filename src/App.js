@@ -30,7 +30,7 @@ function App() {
   return (
     <Container>
       <Header 
-      titulo="Car Insurance Estimator"
+      titulo="Beta Car"
     />
     <HeroImgContainer>
 
