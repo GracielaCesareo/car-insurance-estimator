@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
-import {getYearDifference, calculateCategory} from '../helpers';
+import {getYearDifference, calculateCategory, getPlan} from '../helpers';
 
 
 const Campo = styled.div`
@@ -55,7 +55,7 @@ const Error = styled.div`
     margin-bottom: 1rem;
 `;
 
-const Form = () => {
+const Form = ({saveRecap}) => {
 
     const[data, saveData] = useState({
         category: '',
@@ -111,8 +111,15 @@ const Form = () => {
             Economy = 20%
             Premium = 50%
         */
+    //    priceBase = getPlan(plan)
+        const planIncrement = getPlan(plan);
+        priceBase = parseFloat( planIncrement * priceBase).toFixed(2);
 
         // Total
+        saveRecap({
+            estimation: priceBase,
+            data
+        });
 
     }
 
@@ -155,8 +162,8 @@ const Form = () => {
                         <option value="2014">2014</option>
                         <option value="2013">2013</option>
                         <option value="2012">2012</option>
-                        <option value="2011">2012</option>
-                        <option value="2010">2012</option>
+                        <option value="2011">2011</option>
+                        <option value="2010">2010</option>
                     </Select>
                 </Campo>
                 <Campo>

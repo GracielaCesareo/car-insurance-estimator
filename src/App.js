@@ -1,6 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Header from './components/Header';
-import Form from './components/Form'
+import Form from './components/Form';
+import Recap from './components/Recap';
+
 
 import styled from '@emotion/styled';
 
@@ -27,6 +29,19 @@ const FormContainer = styled.div`
 
 
 function App() {
+
+  const [ recap, saveRecap ] = useState({
+    estimation: 0,
+    data:{
+      category: '',
+      year: '',
+      plan: ''
+    }
+  });
+
+  const {data} = recap;
+
+
   return (
     <Container>
       <Header 
@@ -36,7 +51,12 @@ function App() {
 
     </HeroImgContainer>
     <FormContainer>
-      <Form />
+      <Form 
+        saveRecap={saveRecap}
+      />
+      <Recap 
+        data={data}
+      />
     </FormContainer>
     </Container>
     
