@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {firstCapitalLetter} from '../helpers'
 import styled from '@emotion/styled';
 

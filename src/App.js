@@ -2,6 +2,10 @@ import React, {useState} from 'react';
 import Header from './components/Header';
 import Form from './components/Form';
 import Recap from './components/Recap';
+import Result from './components/Result';
+import Loader from './components/Loader';
+
+
 
 
 import styled from '@emotion/styled';
@@ -39,7 +43,9 @@ function App() {
     }
   });
 
-  const {data} = recap;
+  const [ load, saveLoad ] = useState(false);
+
+  const {estimation, data} = recap;
 
 
   return (
@@ -53,10 +59,20 @@ function App() {
     <FormContainer>
       <Form 
         saveRecap={saveRecap}
+        saveLoad={saveLoad}
       />
+      {load ? <Loader /> : null }
+      
       <Recap 
         data={data}
       />
+      {!load ?
+        <Result
+        estimation={estimation}
+      />
+        :null
+      }
+      
     </FormContainer>
     </Container>
     

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import {getYearDifference, calculateCategory, getPlan} from '../helpers';
 
 
-const Campo = styled.div`
+const Field = styled.div`
     margin-bottom: 1rem;
     padding: .75rem;
 `;
@@ -19,7 +19,7 @@ const Select = styled.select`
     width: 100%;
     padding: .75rem;
     background-color: black;
-    color: white;
+    color: #fff;
     border: none;
     border-radius: 4px;
     --webkit-appearance: none;
@@ -55,7 +55,7 @@ const Error = styled.div`
     margin-bottom: 1rem;
 `;
 
-const Form = ({saveRecap}) => {
+const Form = ({saveRecap, saveLoad}) => {
 
     const[data, saveData] = useState({
         category: '',
@@ -115,11 +115,21 @@ const Form = ({saveRecap}) => {
         const planIncrement = getPlan(plan);
         priceBase = parseFloat( planIncrement * priceBase).toFixed(2);
 
-        // Total
-        saveRecap({
-            estimation: priceBase,
-            data
-        });
+        saveLoad(true);
+
+        setTimeout(() => {
+            
+            saveLoad(false);
+
+            // Total
+            saveRecap({
+                estimation: priceBase,
+                data
+            });
+
+        }, 3000);
+
+        
 
     }
 
@@ -130,7 +140,7 @@ const Form = ({saveRecap}) => {
         >
             <fieldset>
             {error ? <Error>All fields are required</Error> : null}
-                <Campo>
+                <Field>
                     <Label htmlFor="">Category</Label>
                     <Select 
                         name="category" 
@@ -143,8 +153,8 @@ const Form = ({saveRecap}) => {
                         <option value="sport">Sport</option>
                         <option value="compact">Compact</option>
                     </Select>
-                </Campo>
-                <Campo>
+                </Field>
+                <Field>
                     <Label htmlFor="">Year</Label>
                     <Select 
                         name="year"
@@ -165,8 +175,8 @@ const Form = ({saveRecap}) => {
                         <option value="2011">2011</option>
                         <option value="2010">2010</option>
                     </Select>
-                </Campo>
-                <Campo>
+                </Field>
+                <Field>
                     <Label htmlFor="">Plan</Label>
                     <InputRadio 
                         type="radio"
@@ -189,7 +199,7 @@ const Form = ({saveRecap}) => {
                         checked= {plan === "premium"}
                         onChange={getInfo}
                     />Premium
-                </Campo>
+                </Field>
                 <Button type="submit">Get Estimation</Button>
             </fieldset>
         </form>
