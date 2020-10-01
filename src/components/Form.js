@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 import {getYearDifference, calculateCategory, getPlan} from '../helpers';
 
 
@@ -16,13 +17,13 @@ const Label = styled.label`
 
 const Select = styled.select`
     display: block;
-    width: 100%;
+    /* width: 100%;
     padding: .75rem;
     background-color: black;
     color: #fff;
     border: none;
     border-radius: 4px;
-    --webkit-appearance: none;
+    --webkit-appearance: none; */
 `;
 
 const InputRadio = styled.input`
@@ -123,7 +124,7 @@ const Form = ({saveRecap, saveLoad}) => {
 
             // Total
             saveRecap({
-                estimation: priceBase,
+                estimation: Number(priceBase),
                 data
             });
 
@@ -204,6 +205,11 @@ const Form = ({saveRecap, saveLoad}) => {
             </fieldset>
         </form>
      );
+}
+
+Form.propTypes = {
+    saveRecap: PropTypes.func.isRequired,
+    saveLoad: PropTypes.func.isRequired
 }
  
 export default Form;

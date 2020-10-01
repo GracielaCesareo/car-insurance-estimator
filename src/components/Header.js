@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 const HeaderContainer = styled.header`
     background-color: rgb(255, 201, 60);
     padding: 1rem 1.25rem;
     font-weight: bold;
     color: #1a1c20;
-    position: absolute;
+    position: relative;
     top: 0;
-    width: 100%;
 `;
 
 const HeaderText = styled.h1`
@@ -18,12 +18,16 @@ const HeaderText = styled.h1`
     text-transform: uppercase;
 `;
 
-const Header = ({titulo}) => {
+const Header = ({title}) => {
     return ( 
         <HeaderContainer>
-            <HeaderText>{titulo}</HeaderText>
+            <HeaderText>{title}</HeaderText>
         </HeaderContainer>
      );
 }
- 
+
+Header.propTypes = {
+    title: PropTypes.string.isRequired
+}
+
 export default Header;

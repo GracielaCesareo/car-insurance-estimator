@@ -1,6 +1,7 @@
 import React from 'react';
 import {firstCapitalLetter} from '../helpers'
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 const RecapContainer = styled.div`
     padding: .75rem;
@@ -31,4 +32,8 @@ const Recap = ({data}) => {
     );
 }
  
+Recap.propTypes = {
+    data: PropTypes.object.isRequired
+}
+
 export default Recap;
